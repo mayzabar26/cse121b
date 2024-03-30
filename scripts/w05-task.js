@@ -70,5 +70,4 @@ const filterTemples = () => {
 
 /* Event Listener */
 document.getElementById("filtered").addEventListener("change", filterTemples);
-
 getTemples();
