@@ -21,7 +21,7 @@ async function searchBooks() {
 
     try {
         //Fetching data from Google Books API
-        const response = await fetch("https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&langRestrict=${langRestrict}");
+        const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&langRestrict=${langRestrict}`);
         const data = await response.json();
 
         //Checking if no results are found
