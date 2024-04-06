@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSE 121b | W06: Project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap"rel="stylesheet">
+    <link rel="stylesheet" href="styles/project.css">
+</head>
+
+<body>
+    <div id="background">
+        <picture>
+            <img class="books" src="images/library.png" alt="Book Background" width="100%" height="100%">
+        </picture>
+    </div>
+    <div class="container"> <!--Search container -->
+        <h1>Book Search</h1>
+        <input type="text" id="searchInput" placeholder="Search for books...">
+        <button id="searchButton">Search</button>
+        <div id="results" class="results-container"></div>
+    </div>
+    <div id="modal" class="modal"> <!--Modal container to see the information-->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalInfo"></div>
+        </div>
+    </div>
+</div>
+    <script src="scripts/project.js"></script>
+</body>
+</html>
