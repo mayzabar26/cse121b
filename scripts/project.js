@@ -1,49 +1,51 @@
-// script.js
-//Getting references to HTML elements
+// Get references to HTML elements
 const searchInput = document.getElementById('searchInput');
 const searchButton = document.getElementById('searchButton');
 const resultsDiv = document.getElementById('results');
 const modal = document.getElementById('modal');
 const modalInfo = document.getElementById('modalInfo');
 
-//Adding event listener to search button
+// Add event listener to search button
 searchButton.addEventListener('click', searchBooks);
 
-//Fetch Function for books data
+// Function to fetch books data asynchronously
 async function searchBooks() {
+    // Get search term from input field
     const searchTerm = searchInput.value.trim();
+    // Check if search term is empty
     if (searchTerm === '') {
         alert('Please enter a search term.');
         return;
     }
 
-    const langRestrict = 'en'; //Language restriction for search in english
+    // Language restriction for search (English)
+    const langRestrict = 'en';
 
     try {
-        //Fetching data from Google Books API
+        // Fetch data from Google Books API based on search term and language restriction
         const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchTerm}&langRestrict=${langRestrict}`);
         const data = await response.json();
 
-        //Checking if no results are found
+        // Check if no results are found
         if (data.totalItems === 0) {
             resultsDiv.innerHTML = '<p>No results found.</p>';
             return;
         }
 
-        //Displaying search results
+        // Display search results
         displayResults(data.items);
     } catch (error) {
-        //Error message if fetch fails
+        // Log error to console and show alert message if fetching fails
         console.error('Error fetching books:', error);
         alert('Failed to fetch books. Please try again later.');
     }
 }
 
-//Display function to show search results
+// Function to display search results
 function displayResults(books) {
     resultsDiv.innerHTML = '';
 
-    //forEach method and creating HTML elements to display them
+    // Loop through each book and create HTML elements to display them
     books.forEach(book => {
         const title = book.volumeInfo.title || 'No title available';
         const cover = book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : 'No cover available';
@@ -58,14 +60,14 @@ function displayResults(books) {
         bookElement.appendChild(img);
         resultsDiv.appendChild(bookElement);
 
-        // Event listener to show book details on click
+        // Event listener to show book details when clicked
         bookElement.addEventListener('click', () => {
             showModal(book.volumeInfo);
         });
     });
 }
 
-//Function to show modal with book details after clicking in the image
+// Function to show modal with book details
 function showModal(bookInfo) {
     const { title, authors, description, pageCount } = bookInfo;
 
